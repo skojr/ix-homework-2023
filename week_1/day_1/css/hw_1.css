@@ -1,0 +1,13 @@
+body {
+    font-family: 'poppins', sans-serif;
+}
+
+button {
+    background: black;
+}
+
+.button:hover{
+    background: rgb(0, 136, 255);
+    cursor: pointer; 
+    transition: background .5s;  
+  }
