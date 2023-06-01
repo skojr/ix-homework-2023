@@ -52,7 +52,7 @@ let hints = [
     '50 times...',
     'Kachow',
     'Peta-Paka',
-    'In this movie there\'s like illegal stuff, lots of money, and a blonde chick...',
+    'HAWOOooooooooooo',
     'Dreams...',
     'Always flying, cuz he neverlands',
     'You will not vacate past this exact position'
