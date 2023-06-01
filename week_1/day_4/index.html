@@ -19,8 +19,8 @@
 
             <hr>
 
-            <div>
-                A bunch of teenagers trying to survive zombies, climate change, and puzzles
+            <div id="explanation">
+                This movie is about a dude with a stick...
             </div>
 
             <hr>
@@ -31,10 +31,13 @@
                 placeholder="Enter your guess">
                 </div>
 
-                <button class="btn btn-primary btn-block" type="submit">
-                    Submit
-                </button>
+                
             </form>
+
+            <button class="btn btn-primary btn-block" id="guessBtn" type="submit" onclick="checkGuess(event)">
+                Submit
+            </button>
+
             <hr>
 
             <button class="btn btn-secondary" type="button" onclick="showHint()">
@@ -45,6 +48,8 @@
 
             <div id="hint" class="mt-4">
             </div>
+            
+            <button class="btn btn-primary mt-5" id="nextQuestion" type="button" onclick="window.location.reload()">Next Question</button>
 
         </div>
     </div>
