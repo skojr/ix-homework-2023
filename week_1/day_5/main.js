@@ -75,11 +75,6 @@ class UI {
         const checkButton = this.checkButton(tasks);
         tdCheck.appendChild(checkButton);
 
-        // First, create input element
-        const check = document.createElement('input');
-
-        // Create delete action
-
         // Add text into cell
         tdTask.innerHTML = tasks;
 
@@ -88,11 +83,16 @@ class UI {
         tr.appendChild(tdCheck);
         tr.appendChild(tdAction);
 
+        // Add background to td element
+        tdTask.classList.add('bg-body-secondary');
+        tdCheck.classList.add('bg-body-secondary');
+        tdAction.classList.add('bg-body-secondary');
+
         return tr;
 
     }
 
-    checkButton(tasks) {
+    checkButton() {
         const check = document.createElement('input');
         check.setAttribute("class",'form-check-input ms-4');
         check.setAttribute("id", "flexCheckDefault");
@@ -103,12 +103,21 @@ class UI {
 
     deleteButton(tasks) {
         const deleteButton = document.createElement('button');
-        deleteButton.setAttribute('class', 'btn btn-danger btn-sm ms-3');
-        deleteButton.innerHTML = 'Delete';
+        deleteButton.setAttribute('class', 'btn btn-danger btn-sm');
+        deleteButton.innerHTML = "Delete";
 
-        deleteButton.addEventListener('click', () => this.onRemoveBookClicked(book));
+        deleteButton.addEventListener('click', () => this.removeTask(tasks));
+        
         return deleteButton;
     };
+
+    removeTask(tasks) {
+        this.taskList = this.taskList.filter((x) => {
+            return tasks !== x
+        });
+
+        this.renderTaskTable();
+    }
     
 }
 
