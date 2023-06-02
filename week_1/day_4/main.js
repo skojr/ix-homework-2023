@@ -66,6 +66,7 @@ let movieGuess = dom.querySelector('#movie-Guess');
 console.log(movieGuess);
 let starterExplanantion = dom.querySelector('#explanation');
 let submitBtn = dom.querySelector('#guessBtn');
+let result = dom.querySelector('.fw-semibold');
 
 
 // Generate random integer
@@ -86,16 +87,19 @@ function checkGuess(event) {
     console.log(guess);
 
     if (guess == titles[num]) {
-        output.innerHTML = "You are correct";
+        output.innerHTML = "You are correct!";
         console.log(output.classList);
         dom.querySelector("#nextQuestion").disabled=false;
         submitBtn.classList = '';
         submitBtn.classList.add('btn',  'btn-success');
+        result.classList = ' ';
+        result.classList.add('text-success', 'mt-4', 'fw-semibold');
 
     } else {
-        output.innerHTML = "You are incorrect";
+        output.innerHTML = "You are incorrect!";
         submitBtn.classList.remove("btn-primary");
         submitBtn.classList.add('btn-danger');
+        result.classList.add('text-danger')
     }
 
     movieGuess.value = '';
