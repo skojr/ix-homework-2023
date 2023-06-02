@@ -60,9 +60,13 @@ let hints = [
 
 
 let dom = document
+let card = dom.querySelector('.card');
+console.log(card);
 let movieGuess = dom.querySelector('#movie-Guess');
 console.log(movieGuess);
 let starterExplanantion = dom.querySelector('#explanation');
+let submitBtn = dom.querySelector('#guessBtn');
+
 
 // Generate random integer
 let num = Math.round(Math.random() * 10);
@@ -83,9 +87,15 @@ function checkGuess(event) {
 
     if (guess == titles[num]) {
         output.innerHTML = "You are correct";
+        console.log(output.classList);
         dom.querySelector("#nextQuestion").disabled=false;
+        submitBtn.classList = '';
+        submitBtn.classList.add('btn',  'btn-success');
+
     } else {
         output.innerHTML = "You are incorrect";
+        submitBtn.classList.remove("btn-primary");
+        submitBtn.classList.add('btn-danger');
     }
 
     movieGuess.value = '';
@@ -95,3 +105,4 @@ function checkGuess(event) {
 function showHint() {
     hint.innerHTML = hints[num];
 }
+
