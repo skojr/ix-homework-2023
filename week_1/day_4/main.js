@@ -92,8 +92,8 @@ function checkGuess(event) {
         dom.querySelector("#nextQuestion").disabled=false;
         submitBtn.classList = '';
         submitBtn.classList.add('btn',  'btn-success');
-        result.classList = ' ';
-        result.classList.add('text-success', 'mt-4', 'fw-semibold');
+        result.classList.remove('text-danger');
+        result.classList.add('text-success');
 
     } else {
         output.innerHTML = "You are incorrect!";
