@@ -2,7 +2,7 @@
 
 
 class Task {
-    constructor(task, check) {
+    constructor(task) {
         this.task = task;
     }
 }
@@ -25,9 +25,9 @@ class UI {
     // When the form is submitted
     onFormSubmit(e) {
         e.preventDefault();
-        console.log('I was clicked');
 
-        // Defines input value
+        if (this.taskInput.value !== '') {
+            // Defines input value
         this.taskValue = document.getElementById('task-input').value
 
         // Instantiates Task class
@@ -45,6 +45,10 @@ class UI {
 
         // Calls to function within class that creates table upon submission
         this.renderTaskTable();
+        } else {
+            alert('Please enter a task...');
+        }
+
     }
 
     renderTaskTable() {
@@ -103,8 +107,7 @@ class UI {
 
     deleteButton(tasks) {
         const deleteButton = document.createElement('button');
-        deleteButton.setAttribute('class', 'btn btn-danger btn-sm');
-        deleteButton.innerHTML = "Delete";
+        deleteButton.setAttribute('class', 'btn btn-outline-danger fa-solid fa-trash');
 
         deleteButton.addEventListener('click', () => this.removeTask(tasks));
         
