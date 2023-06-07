@@ -6,20 +6,18 @@ export default function PokemonList(props) {
     <table className="table mt-5">
       <thead>
         <tr>
-          <th>Picture</th>
-          <th>Base Stat</th>
-          <th>Effort</th>
-          <th>Stat</th>
+          <th className='bg-dark-subtle'>Base Stat</th>
+          <th className='bg-dark-subtle'>Effort</th>
+          <th className='bg-dark-subtle'>Stat</th>
         </tr>
       </thead>
       <tbody id="table-body">
         {props.attributes.map((pokemon) => {
           return (
-            <tr key={pokemon.base}>
-                <td><img src={pokemon.picture} alt='Front of pokemon'></img></td>
-                <td>{pokemon.base}</td>
-                <td>{pokemon.effort}</td>
-                <td>{pokemon.stat}</td>
+            <tr key={pokemon.base} className='bg-dark-subtle'>
+                <td className='bg-dark-subtle'>{pokemon.base}</td>
+                <td className='bg-dark-subtle'>{pokemon.effort}</td>
+                <td className='bg-dark-subtle'>{pokemon.stat}</td>
             </tr>
           );
         })}

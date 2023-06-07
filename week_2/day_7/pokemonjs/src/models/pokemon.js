@@ -1,8 +1,8 @@
 export class PokemonStat {
-    constructor(base, effort, stat, picture) {
+    constructor(base, effort, stat, abilities) {
         this.base = base;
         this.effort = effort;
         this.stat = stat;
-        this.picture = picture;
+        this.abilities = abilities;
     }
 }
