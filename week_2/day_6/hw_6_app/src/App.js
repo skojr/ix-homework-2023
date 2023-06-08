@@ -17,6 +17,7 @@ function App() {
   }
 
   function onBookDelete(book) {
+    setBooks(book)
     setBooks(books.filter((x) => x.isbn !== book.isbn));
   }
 
