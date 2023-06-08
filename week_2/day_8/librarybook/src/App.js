@@ -6,14 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BookTable from './components/BookTable';
 
 import LibraryService from './services/library-service';
-import {Book} from './models/book';
+import { Book } from './models/book';
 
 function App() {
-
- 
-
   const [books, setBooks] = useState([]);
   const [editBook, setBookToEdit] = useState(null);
+  const [bookToUpdate, setBookToUpdate] = useState(null);
 
   useEffect(
     () => {
@@ -41,17 +39,19 @@ function App() {
       console.log(err);
     }
   }
-  
+
   async function onBookCreated(book) {
-  // Front end
-  setBookToEdit(null);
-  
-  // Back end
-  const  newBook = await LibraryService.addBooks(new Book(book.title, book.author, book.isbn, null));
-  setBooks([...books, newBook]);
-  
-  console.log(newBook);
-  console.log(books);
+    // Front end
+    setBookToEdit(null);
+
+    // Back end
+    const newBook = await LibraryService.addBooks(
+      new Book(book.title, book.author, book.isbn, null)
+    );
+    setBooks([...books, newBook]);
+
+    console.log(newBook);
+    console.log(books);
   }
 
   async function onBookDelete(bookId) {
@@ -59,7 +59,7 @@ function App() {
     await LibraryService.deleteBooks(bookId);
 
     // Front end
-    setBooks(books.filter((book) => book.id !== bookId));;
+    setBooks(books.filter((book) => book.id !== bookId));
   }
 
   async function onBookEdit(bookId) {
@@ -70,19 +70,33 @@ function App() {
     setBooks(books.filter((book) => book.id !== bookId));
 
     // Back-end
-    const bookToUpdate = books.find((book) => book.id === bookId)
+    const bookToUpdate = books.find((book) => book.id === bookId);
     console.log(bookToUpdate);
-    await LibraryService.updateBooks(bookToUpdate);
+    setBookToUpdate(bookToUpdate);
+  }
+
+  async function updateBook(book) {
+    await LibraryService.updateBooks(book);
+
+    setBooks([...books, book]);
   }
 
   return (
-    <div className='container my-5'>
-      <div className='card p-4'>
-        <BookForm onBookCreated={onBookCreated} editBook={editBook}></BookForm>
-        <BookTable books={books} onBookDelete={onBookDelete} onBookEdit={onBookEdit}></BookTable>
+    <div className="container my-5">
+      <div className="card p-4">
+        <BookForm
+          onBookCreated={onBookCreated}
+          updateBook={updateBook}
+          editBook={editBook}
+          bookToUpdate={bookToUpdate}
+        ></BookForm>
+        <BookTable
+          books={books}
+          onBookDelete={onBookDelete}
+          onBookEdit={onBookEdit}
+        ></BookTable>
       </div>
     </div>
-    
   );
 }
 
