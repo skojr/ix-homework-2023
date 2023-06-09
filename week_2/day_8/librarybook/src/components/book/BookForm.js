@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Book } from '../models/book';
+import { Book } from '../../models/book';
 
 export default function BookForm(props) {
   const [title, setTitle] = useState('');
@@ -9,7 +9,9 @@ export default function BookForm(props) {
   function onBookFormSubmut(e) {
     e.preventDefault();
 
+    // If there is a bookToUpdate, execute these steps, else just create a new book
     if (props.bookToUpdate) {
+      // 
       props.bookToUpdate.title = title;
       props.bookToUpdate.author = author;
       props.bookToUpdate.isbn = isbn;

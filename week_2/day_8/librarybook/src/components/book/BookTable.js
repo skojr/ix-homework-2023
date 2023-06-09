@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 
 export default function BookTable(props) {
-
   return (
     <div>
       <table className="table mt-5">
@@ -21,8 +20,18 @@ export default function BookTable(props) {
                 <td>{book.author}</td>
                 <td>{book.isbn}</td>
                 <td>
-                    <button className='btn btn-danger me-1' onClick={() => props.onBookDelete(book.id)}>Delete</button>
-                    <button className='btn btn-warning ms-1' onClick={() => props.onBookEdit(book.id)}>Edit</button>
+                  <button
+                    className="btn btn-danger me-1"
+                    onClick={() => props.onBookDelete(book.id)}
+                  >
+                    <i className='bi bi-trash'></i>
+                  </button>
+                  <button
+                    className="btn btn-warning ms-1"
+                    onClick={() => props.onBookEdit(book.id)}
+                  >
+                    <i className='bi bi-pencil'></i>
+                  </button>
                 </td>
               </tr>
             );
