@@ -1,31 +1,32 @@
-import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React from "react";
+import { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function Login() {
+  const [email, setEmail] = useState([]);
+  const [password, setPassword] = useState([]);
   const navigate = useNavigate();
 
   async function onFormSubmit(e) {
     e.preventDefault();
 
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      const user = await signInWithEmailAndPassword(auth, email, password);
       console.log(user);
+      navigate("/");
     } catch (err) {
       alert(err.message);
     }
-  } 
+  }
   return (
     <div className="container my-5">
       <div className="card card-body">
-        <h1>Sign Up</h1>
-        <p>Please enter your email and password to sign up!</p>
+        <h1>Login</h1>
+        <p>Please enter your email and password to login</p>
 
-        <form>
+        <form onSubmit={onFormSubmit}>
           <div className="mb-3">
             <label className="form-label">Email Address</label>
             <input
@@ -50,7 +51,7 @@ export default function SignUp() {
 
           <div className="d-flex justify-content-end mt-4">
             <button type="submit" className="btn btn-primary">
-              Sign Up
+              Login
             </button>
           </div>
         </form>

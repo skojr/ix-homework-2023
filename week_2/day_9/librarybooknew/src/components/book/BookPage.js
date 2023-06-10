@@ -5,10 +5,13 @@ import { Book } from '../../models/book'
 import BookForm from './BookForm';
 import BookTable from './BookTable';
 
-export default function BookPage() {
-    const [books, setBooks] = useState([]);
+import { useNavigate } from 'react-router-dom';
+
+export default function BookPage(props) {
+  const [books, setBooks] = useState([]);
   const [editBook, setBookToEdit] = useState(null);
   const [bookToUpdate, setBookToUpdate] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(
     () => {
@@ -24,27 +27,31 @@ export default function BookPage() {
     // this function fires again
   );
 
-  async function onInitialLoad() {
+ async function onInitialLoad() {
     // We try catch here if there is an error
     // We can show that error to the user
+    setLoading(true);
     try {
       const books = await LibraryService.fetchBooks();
-      setBooks(books);
+      console.log(books);
+      setBooks(books.filter((book) => book.userId === props.user.uid));
+      console.log(books);
     } catch (err) {
       // TODO: handle error correctly
       console.log(err);
     }
-  }
+    setLoading(false);
+  } 
+
 
   async function onBookCreated(book) {
     // Front end
     setBookToEdit(null);
-    setBooks([...books, book]);
-    console.log('hello?')
 
     // Back end
+    console.log(props.user);
     const newBook = await LibraryService.addBooks(
-      new Book(book.title, book.author, book.isbn, null)
+      new Book(book.title, book.author, book.isbn, null, props.user.uid, props.user.email)
     );
     setBooks([...books, newBook]);
 
@@ -62,16 +69,14 @@ export default function BookPage() {
 
   async function onBookEdit(bookId) {
     // Front-end
-    const newBook = books.filter((book) => book.id === bookId);
-    setBookToEdit(newBook);
-    console.log(newBook);
+    const book = books.filter((book) => book.id === bookId);
+    setBookToEdit(book);
     setBooks(books.filter((book) => book.id !== bookId));
 
     // Back-end
 
     // Find the book whose id matches the id of the book we are editing
     const bookToUpdate = books.find((book) => book.id === bookId);
-    console.log(bookToUpdate);
 
     // The found book now equals bookToUpdate
     setBookToUpdate(bookToUpdate);
@@ -91,6 +96,7 @@ export default function BookPage() {
           updateBook={updateBook}
           editBook={editBook}
           bookToUpdate={bookToUpdate}
+          setBookToUpdate={setBookToUpdate}
         ></BookForm>
         <BookTable
           books={books}

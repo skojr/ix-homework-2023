@@ -13,20 +13,21 @@ export default function SignUp() {
 
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
       console.log(user);
+      navigate("/");
     } catch (err) {
       alert(err.message);
     }
-  } 
+  }
   return (
     <div className="container my-5">
       <div className="card card-body">
         <h1>Sign Up</h1>
-        <p>Please enter your email and password to sign up!</p>
+        <p>Please enter your contact and password to sign up!</p>
 
-        <form>
+        <form onSubmit={onFormSubmit}>
           <div className="mb-3">
+
             <label className="form-label">Email Address</label>
             <input
               value={email}

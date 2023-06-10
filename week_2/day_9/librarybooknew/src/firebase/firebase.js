@@ -2,17 +2,17 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDfpmMaA7rpotacDoLf7DPaGIt8fG7SKv4",
-  authDomain: "beauty-draft.firebaseapp.com",
-  projectId: "beauty-draft",
-  storageBucket: "beauty-draft.appspot.com",
-  messagingSenderId: "702771529942",
-  appId: "1:702771529942:web:de8fe7d1cd4834cae36177"
+  apiKey: "AIzaSyCfYSpclQ5HcVpl-R40qy6ndUxPHw40w6M",
+  authDomain: "library-project-dff5b.firebaseapp.com",
+  projectId: "library-project-dff5b",
+  storageBucket: "library-project-dff5b.appspot.com",
+  messagingSenderId: "736536393286",
+  appId: "1:736536393286:web:4db3107bddafbf372e7c47"
 };
 
 // Initialize Firebase
