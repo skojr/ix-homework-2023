@@ -40,11 +40,19 @@ export default function MoviesPage() {
       </div>
       {images.map((url) => {
         return (
-        <div className="container">
-          <img src={url} />
-          <button className="btn btn-danger">Delete</button>
-        </div>
-        )
+          <>
+            <div className="row">
+              <div className="col">
+                <img src={url} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <button className="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </>
+        );
       })}
     </div>
   );
