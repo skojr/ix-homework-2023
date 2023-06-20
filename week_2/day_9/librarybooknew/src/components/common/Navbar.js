@@ -10,6 +10,14 @@ export default function Navbar(props) {
 
   return (
     <div>
+      
+      <div className="top-bar">
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button className="btn btn-dark">Register</button>
+          <button className="btn btn-dark">Signup</button>
+        </div>
+      </div>
+
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <div className="navbar-brand">Navbar</div>
